@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { routes } from '../api/routes.js'
 
 const images = [
   "/img/зеленаяЖенщина.png",
@@ -10,6 +12,11 @@ const images = [
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const navigate = useNavigate()
+
+  const handlePlayClick = () => {
+    navigate(routes.playPage(), { replace: true })
+  }
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,7 +59,6 @@ const HomePage = () => {
                       </button>
                       <span className="text-center text-white font-bold text-shadow-lg text-2xl">ГАРДЕРОБ</span>
                     </div>
-                    <div className="flex flex-col items-center gap-2"></div>
                       <div className="flex flex-col items-center w-32 h-40 right-0">
                         <img
                           src="/img/монетки.png"
@@ -60,7 +66,7 @@ const HomePage = () => {
                           className="w-full h-32 object-contain"
                         />
                         <span className="text-center text-white font-bold text-shadow-lg text-2xl">
-                          1255
+                          1255❤️
                         </span>
                       </div>
                   </div>
@@ -69,6 +75,7 @@ const HomePage = () => {
                     <div className="grid grid-flow-col grid-rows-2 gap-4">
                         <button
                           className="bg-pink-500 hover:bg-fuchsia-500 text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
+                          onClick={handlePlayClick}
                         >
                           ИГРАТЬ
                         </button>
