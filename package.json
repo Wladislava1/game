@@ -1,0 +1,23 @@
+{
+  "name": "@game/custome",
+  "version": "1.0.0",
+  "main": "game_person/src/main.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run dev",
+    "postinstall": "cd frontend && npm ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wladislava1/game.git"
+  },
+  "author": "Wladislawa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wladislava1/game/issues"
+  },
+  "homepage": "https://github.com/Wladislava1/game#readme",
+  "dependencies": {
+    "@hexlet/chat-server": "^2.0.4"
+  }
+}
