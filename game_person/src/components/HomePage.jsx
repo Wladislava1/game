@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { routes } from '../api/routes.js'
 
 const images = [
-  "/img/зеленаяЖенщина.png",
-  "/img/краснаяЖенщина.png",
-  "/img/синяяЖенщина.png",
-  "/img/розоваяЖенщина.png",
-  "/img/бежеваяЖенщина.png"
+  "/img/женщины/зеленаяЖенщина.png",
+  "/img/женщины/краснаяЖенщина.png",
+  "/img/женщины/синяяЖенщина.png",
+  "/img/женщины/розоваяЖенщина.png",
+  "/img/женщины/бежеваяЖенщина.png"
 ];
 
 const HomePage = () => {
@@ -28,7 +28,7 @@ const HomePage = () => {
 
     return (
         <>
-          <div className="w-screen h-screen box-border p-4 bg-no-repeat bg-center bg-[url(/img/customBack.png)]">
+          <div className="w-screen h-screen box-border p-4 bg-no-repeat bg-center bg-[url(/img/bg/customBack.png)]">
             <div className="grid grid-flow-col grid-rows-3 gap-4 w-full h-full">
                 <div className="row-span-3 flex items-center justify-start">
                     <img
@@ -42,7 +42,7 @@ const HomePage = () => {
                     <div className="flex flex-col items-center gap-2">
                       <button className="w-24 h-24 bg-blue-400 rounded-3xl flex items-center justify-center text-white border-[3px] border-solid shadow-lg hover:bg-blue-500 transition">
                         <img
-                          src="/img/сумка.png"
+                          src="/img/buttons/сумка.png"
                           alt="сумка"
                           className="max-w-full max-h-full object-contain p-2"
                         />
@@ -52,7 +52,7 @@ const HomePage = () => {
                     <div className="flex flex-col items-center gap-2">
                       <button className="w-24 h-24 bg-yellow-400 rounded-3xl flex items-center justify-center text-white border-[3px] border-solid shadow-lg hover:bg-yellow-500 transition">
                         <img
-                          src="/img/гардероб.png"
+                          src="/img/buttons/гардероб.png"
                           alt="гардероб"
                           className="max-w-full max-h-full object-contain p-1"
                         />
@@ -61,7 +61,7 @@ const HomePage = () => {
                     </div>
                       <div className="flex flex-col items-center w-32 h-40 right-0">
                         <img
-                          src="/img/монетки.png"
+                          src="/img/buttons/монетки.png"
                           alt="деньги"
                           className="w-full h-32 object-contain"
                         />
