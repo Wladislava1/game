@@ -40,7 +40,7 @@ const PlayPage = () => {
                           onClick={() => handlePhotoClick()}
                         >
                             <img
-                            src={`/img/buttons/фото.png`}
+                            src="/img/buttons/фото.png"
                             alt="кнопка фото"
                             className="max-w-full max-h-full object-contain p-1"
                             />

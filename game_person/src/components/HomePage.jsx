@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { routes } from '../api/routes.js'
+import { routes } from '../api/routes.js';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const images = [
   "/img/женщины/зеленаяЖенщина.png",
@@ -12,10 +13,11 @@ const images = [
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const handlePlayClick = () => {
-    navigate(routes.playPage(), { replace: true })
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate(routes.loginPage(), { replace: true });
   }
 
   useEffect(() => {
@@ -72,17 +74,24 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="col-span-1 row-span-2 flex items-center justify-center">
-                    <div className="grid grid-flow-col grid-rows-2 gap-4">
-                        <button
-                          className="bg-pink-500 hover:bg-fuchsia-500 text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
-                          onClick={handlePlayClick}
+                    <div className="grid grid-flow-col grid-rows-3 gap-4">
+                        <Link
+                          to={routes.playPage()}
+                          className="bg-pink-500 hover:bg-fuchsia-500 text-center text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
                         >
                           ИГРАТЬ
-                        </button>
-                        <button
-                          className="bg-pink-500 hover:bg-fuchsia-500 text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
+                        </Link>
+                        <Link
+                          to={routes.collectionPage()}
+                          className="bg-pink-500 hover:bg-fuchsia-500 text-center text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
                         >
                           КОЛЛЕКЦИЯ
+                        </Link>
+                        <button
+                          onClick={handleLogout}
+                          className="bg-pink-500 hover:bg-fuchsia-500 text-center text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
+                        >
+                          ВЫЙТИ
                         </button>
 
                     </div>
