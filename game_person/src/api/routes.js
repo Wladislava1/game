@@ -10,5 +10,6 @@ export const routes = {
   collectionPage: () => '/collection',
   loginPage: () => '/login',
   signupPage: () => '/signup',
+  housePage: () => '/house',
   notfoundPage: () => '*',
 }

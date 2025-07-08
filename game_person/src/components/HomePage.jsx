@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { routes } from '../api/routes.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import axios from "axios";
 
 const images = [
   "/img/женщины/зеленаяЖенщина.png",
@@ -13,7 +14,12 @@ const images = [
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [coins, setCoins] = useState(0);
   const navigate = useNavigate();
+
+  const handleHouseCLick = () => {
+    navigate(routes.housePage(), { replace: true });
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -52,7 +58,9 @@ const HomePage = () => {
                       <span className="text-center text-white font-bold text-shadow-lg text-2xl">МАГАЗИН</span>
                     </div>
                     <div className="flex flex-col items-center gap-2">
-                      <button className="w-24 h-24 bg-yellow-400 rounded-3xl flex items-center justify-center text-white border-[3px] border-solid shadow-lg hover:bg-yellow-500 transition">
+                      <button 
+                        onClick={handleHouseCLick}
+                        className="w-24 h-24 bg-yellow-400 rounded-3xl flex items-center justify-center text-white border-[3px] border-solid shadow-lg hover:bg-yellow-500 transition">
                         <img
                           src="/img/buttons/дом.png"
                           alt="дом"
@@ -68,7 +76,7 @@ const HomePage = () => {
                           className="w-full h-32 object-contain"
                         />
                         <span className="text-center text-white font-bold text-shadow-lg text-2xl">
-                          1255❤️
+                          {coins}❤️
                         </span>
                       </div>
                   </div>

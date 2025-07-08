@@ -3,9 +3,9 @@ import Container from "../ui/container";
 
 const PlayPage = () => {
     const [currentShow, setCurrentShow] = useState(1);
-    const [faceIndex, setFaceIndex] = useState(1);
-    const [clothesIndex, setClothesIndex] = useState(1);
-    const [shoesIndex, setShoesIndex] = useState(1);
+    const [faceIndex, setFaceIndex] = useState(0);
+    const [clothesIndex, setClothesIndex] = useState(0);
+    const [shoesIndex, setShoesIndex] = useState(0);
 
     const handleShowContainerClick = (index) => {
       setCurrentShow(index);
@@ -29,21 +29,27 @@ const PlayPage = () => {
                             alt="база"
                             className="absolute inset-0 max-h-full max-w-full object-contain z-10"
                         />
-                        <img
-                            src={`/img/face/${faceIndex}.png`}
-                            alt="волосы"
-                            className="absolute inset-0 max-h-full max-w-full object-contain z-20 pointer-events-none"
-                        />
-                        <img
-                            src={`/img/cloth/${clothesIndex}.png`}
-                            alt="одежда"
-                            className="absolute inset-0 max-h-full max-w-full object-contain z-30 pointer-events-none"
-                        />
-                        <img
-                            src={`/img/shoes/${shoesIndex}.png`}
-                            alt="обувь"
-                            className="absolute inset-0 max-h-full max-w-full object-contain z-40 pointer-events-none"
-                        />
+                        {faceIndex > 0 && (
+                            <img
+                                src={`/img/face/${faceIndex}.png`}
+                                alt="волосы"
+                                className="absolute inset-0 max-h-full max-w-full object-contain z-20 pointer-events-none"
+                            />
+                            )}
+                        {clothesIndex > 0 && (
+                            <img
+                                src={`/img/cloth/${clothesIndex}.png`}
+                                alt="одежда"
+                                className="absolute inset-0 max-h-full max-w-full object-contain z-40 pointer-events-none"
+                            />
+                        )}
+                        {shoesIndex > 0 && (
+                            <img
+                                src={`/img/shoes/${shoesIndex}.png`}
+                                alt="обувь"
+                                className="absolute inset-0 max-h-full max-w-full object-contain z-30 pointer-events-none"
+                            />
+                        )}
                         </div>
                 </div>
                 <div className="col-span-1 flex items-center justify-end">

@@ -6,7 +6,9 @@ import NotFoundPage from './components/NotFoundPage.jsx';
 import SignupPage from './components/SignupPage.jsx';
 import LoginPage from './components/LoginPage.jsx';
 import PrivateRoute from './components/PrivateRoute.jsx';
+import HousePage from './components/HousePage.jsx';
 import './index.css';
+
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
       <Route element={<PrivateRoute />}>
         <Route path={routes.homePage()} element={<HomePage />} />
         <Route path={routes.playPage()} element={<PlayPage />} />
+        <Route path={routes.housePage()} element={<HousePage />} />
       </Route>
       <Route path={routes.notfoundPage()} element={<NotFoundPage />} />
     </Routes>
