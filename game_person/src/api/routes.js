@@ -5,7 +5,6 @@ export const routes = {
   signup: () => `${API_BASE}/signup`,
   womens: () => `${API_BASE}/womens`,
   money: () => `${API_BASE}/money`,
-  cloth: () => `${API_BASE}/cloth`,
   homePage: () => '/',
   playPage: () => '/play',
   collectionPage: () => '/collection',

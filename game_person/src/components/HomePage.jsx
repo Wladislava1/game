@@ -54,12 +54,12 @@ const HomePage = () => {
                     <div className="flex flex-col items-center gap-2">
                       <button className="w-24 h-24 bg-yellow-400 rounded-3xl flex items-center justify-center text-white border-[3px] border-solid shadow-lg hover:bg-yellow-500 transition">
                         <img
-                          src="/img/buttons/гардероб.png"
-                          alt="гардероб"
-                          className="max-w-full max-h-full object-contain p-1"
+                          src="/img/buttons/дом.png"
+                          alt="дом"
+                          className="max-w-full max-h-full object-contain"
                         />
                       </button>
-                      <span className="text-center text-white font-bold text-shadow-lg text-2xl">ГАРДЕРОБ</span>
+                      <span className="text-center text-white font-bold text-shadow-lg text-2xl">ДОМ</span>
                     </div>
                       <div className="flex flex-col items-center w-32 h-40 right-0">
                         <img

@@ -1,52 +1,14 @@
 import { Link } from 'react-router-dom';
 
-function Container({ currentShow }) {
-  const faceBodyFixtures = [
-    "/img/face/дваПучка.png",
-    "/img/face/дваХвостика.png",
-    "/img/face/короткийХвост.png",
-    "/img/face/кудрявые короткие.png",
-    "/img/face/кудрявыеДлинные.png",
-    "/img/face/прямые.png",
-    "/img/face/прямыеКороткие.png",
-    "/img/face/пучок.png",
-    "/img/face/рыжиеВолосы.png"
-  ];
-  const clothFixtures = [
-    "/img/cloth/джинсоваяЮбка.png",
-    "/img/cloth/джинсы.png",
-    "/img/cloth/желтоеХуди.png",
-    "/img/cloth/майка.png",
-    "/img/cloth/пальто.png",
-    "/img/cloth/свитер.png",
-    "/img/cloth/платье.png",
-    "/img/cloth/школково.png"
-  ];
-  const shoesFixtures = [
-    "/img/shoes/балетки.png",
-    "/img/shoes/кеды.png",
-    "/img/shoes/кроксы.png",
-    "/img/shoes/кроссы.png",
-    "/img/shoes/обувь.png",
-    "/img/shoes/сапоги.png",
-    "/img/shoes/танцы.png",
-    "/img/shoes/балетки.png",
-    "/img/shoes/вансы.png"
-  ];
+function Container({ currentShow, onSelect }) {
 
   let fixtures = [];
-  switch (currentShow) {
-    case 1:
-      fixtures = faceBodyFixtures;
-      break;
-    case 2:
-      fixtures = clothFixtures;
-      break;
-    case 3:
-      fixtures = shoesFixtures;
-      break;
-    default:
-      return null;
+  if (currentShow === 1) {
+    fixtures = Array.from({ length: 9 }, (_, i) => `/img/face/${i+1}.png`);
+  } else if (currentShow === 2) {
+    fixtures = Array.from({ length: 8 }, (_, i) => `/img/cloth/${i+1}.png`);
+  } else if (currentShow === 3) {
+    fixtures = Array.from({ length: 9 }, (_, i) => `/img/shoes/${i+1}.png`);
   }
 
   return (
@@ -55,8 +17,9 @@ function Container({ currentShow }) {
         <div
           key={i}
           className="bg-white border-3 border-gray-300 shadow-lg flex items-center justify-center rounded-3xl"
+          onClick={() => onSelect && onSelect(i)}
         >
-          <img src={el} alt="" className="max-h-full max-w-full object-contain" />
+          <img src={el} alt="" className="h-50 mt-30 max-w-full object-contain" />
         </div>
       ))}
       <Link
