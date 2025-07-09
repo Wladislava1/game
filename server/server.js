@@ -64,6 +64,29 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.get('/money', async (req, res) => {
+  const { username } = req.query;
+
+  if (!username) {
+    return res.status(400).json({ message: 'Username не передан' });
+  }
+
+  try {
+    const db = await connectDB();
+
+    const [users] = await db.execute('SELECT * FROM users WHERE username = ?', [username]);
+    if (users.length === 0) {
+      return res.status(401).json({ message: 'Пользователь не найден' });
+    }
+
+    const user = users[0];
+
+    res.json({ money: user.money });
+  } catch (error) {
+    console.error('Ошибка при получении монет:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);

@@ -26,7 +26,21 @@ const HomePage = () => {
     navigate(routes.loginPage(), { replace: true });
   }
 
+  const getMoney = async () => {
+    try {
+      const response = await axios.get(routes.money(), {
+        params: {
+          username: localStorage.getItem('username'),
+        }
+      });
+      setCoins(response.data.money)
+    } catch (error) {
+      console.log("Ошибка при получении монет")
+    }
+  }  
+
   useEffect(() => {
+    getMoney()
     const interval = setInterval(() => {
       setCurrentIndex(prevIndex => (prevIndex + 1) % images.length);
     }, 2000);

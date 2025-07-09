@@ -16,9 +16,8 @@ const LoginPage = () => {
         username: values.username.trim(),
         password: values.password.trim(),
       })
-      const { username } = response.data
-      console.log(username)
       localStorage.setItem('token', response.data.token || 'dummy_token');
+      localStorage.setItem('username', response.data.username);
       navigate(routes.homePage(), { replace: true })
     }
     catch (error) {
