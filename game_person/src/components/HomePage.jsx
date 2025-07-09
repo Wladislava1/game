@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { routes } from '../api/routes.js';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { CoinsContext } from './MoneyContext.js';
 import axios from "axios";
 
 const images = [
@@ -14,7 +16,7 @@ const images = [
 
 const HomePage = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [coins, setCoins] = useState(0);
+  const { coins, setCoins } = useContext(CoinsContext)
   const navigate = useNavigate();
 
   const handleHouseCLick = () => {
@@ -96,12 +98,18 @@ const HomePage = () => {
                   </div>
                 </div>
                 <div className="col-span-1 row-span-2 flex items-center justify-center">
-                    <div className="grid grid-flow-col grid-rows-3 gap-4">
+                    <div className="grid grid-flow-col grid-rows-4 gap-4">
                         <Link
                           to={routes.playPage()}
                           className="bg-pink-500 hover:bg-fuchsia-500 text-center text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
                         >
                           ИГРАТЬ
+                        </Link>
+                        <Link
+                          to={routes.miniPlayPage()}
+                          className="bg-pink-500 hover:bg-fuchsia-500 text-center text-white font-bold border-3 border-solid py-5 px-40 rounded-3xl text-xl shadow-lg shadow-pink-500/50 transition duration-300"
+                        >
+                          ЗАРАБОТАТЬ МОНЕТКИ
                         </Link>
                         <Link
                           to={routes.collectionPage()}

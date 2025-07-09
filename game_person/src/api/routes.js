@@ -8,6 +8,7 @@ export const routes = {
   homePage: () => '/',
   playPage: () => '/play',
   collectionPage: () => '/collection',
+  miniPlayPage: () => '/miniPlay',
   loginPage: () => '/login',
   signupPage: () => '/signup',
   housePage: () => '/house',
