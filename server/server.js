@@ -88,6 +88,41 @@ app.get('/money', async (req, res) => {
   }
 });
 
+app.post('/money', async (req, res) => {
+  const { username, money } = req.body;
+
+  if (!username) {
+    return res.status(400).json({ message: 'Username не передан' });
+  }
+
+  try {
+    const db = await connectDB();
+
+    const [updateResult] = await db.execute(
+      'UPDATE users SET money = money + ? WHERE username = ?',
+      [money, username]
+    );
+
+    if (updateResult.affectedRows === 0) {
+      return res.status(404).json({ message: 'Пользователь не найден' });
+    }
+
+    const [rows] = await db.execute(
+      'SELECT money FROM users WHERE username = ?',
+      [username]
+    );
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'Пользователь не найден после обновления' });
+    }
+
+    res.json({ money: rows[0].money });
+  } catch (error) {
+    console.error('Ошибка при получении монет:', error);
+    res.status(500).json({ message: 'Ошибка сервера' });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
