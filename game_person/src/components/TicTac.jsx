@@ -7,11 +7,11 @@ const TicTac = ({ onReset, currentShow }) => {
     const [figure, setFigure] = useState(0);
     const [board, setBoard] = useState(Array(9).fill(0));
     const [isPlayerTurn, setIsPlayerTurn] = useState(true);
-    const [winner, setWinner] = useState(false);
+    const [winner, setWinner] = useState(0);
     const { setCoins } = useContext(CoinsContext);
 
     const getMoneyWin = async () => {
-        if (winner) {
+        if (winner === figure) {
             try {
               const username = localStorage.getItem('username');
               console.log(username);
@@ -48,7 +48,7 @@ const TicTac = ({ onReset, currentShow }) => {
 
     const resetGame = () => {
         setBoard(Array(9).fill(0));
-        setWinner(false);
+        setWinner(0);
         setIsPlayerTurn(true);
         setFigure(0);
     };
@@ -94,7 +94,7 @@ const TicTac = ({ onReset, currentShow }) => {
             newBoard[randomIndex] = opponent;
 
             if (checkWinner(newBoard, opponent)) {
-                setWinner(true);
+                setWinner(opponent);
             }
             return newBoard;
         });
@@ -110,7 +110,7 @@ const TicTac = ({ onReset, currentShow }) => {
             newBoard[index] = figure;
 
             if (checkWinner(newBoard, figure)) {
-                setWinner(true);
+                setWinner(figure);
             }
 
             return newBoard;
@@ -132,7 +132,9 @@ const TicTac = ({ onReset, currentShow }) => {
             return () => clearTimeout(timer);
         }
         if (winner) {
-            getMoneyWin();
+            if (winner === figure) {
+                getMoneyWin();
+            }
             const timer = setTimeout(() => {
                 resetGame();
             }, 500);
@@ -144,6 +146,15 @@ const TicTac = ({ onReset, currentShow }) => {
             return () => clearTimeout(timer);
         }
     }, [isPlayerTurn, figure, winner]);
+
+    useEffect(() => {
+        if (figure !== 0) {
+            const opponent = figure === 1 ? 2 : 1;
+            if (checkWinner(board, opponent)) {
+                setWinner(opponent);
+            }
+        }
+    }, [board, figure]);
 
     const handleСhoiceFigure = (index) => {
         setFigure(index)

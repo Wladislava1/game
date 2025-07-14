@@ -4,7 +4,8 @@ import Container from "../ui/container";
 const PlayPage = () => {
     const [currentShow, setCurrentShow] = useState(1);
     const [faceIndex, setFaceIndex] = useState(0);
-    const [clothesIndex, setClothesIndex] = useState(0);
+    const [clothesTopIndex, setClothesTopIndex] = useState(0);
+    const [clothesDownIndex, setClothesDownIndex] = useState(0);
     const [shoesIndex, setShoesIndex] = useState(0);
 
     const handleShowContainerClick = (index) => {
@@ -12,8 +13,9 @@ const PlayPage = () => {
     }
     const handleShowImgPhoto = (index) => {
       if (index === 1) setFaceIndex((prev) => (prev % 3) + 1);
-      if (index === 2) setClothesIndex((prev) => (prev % 3) + 1);
-      if (index === 3) setShoesIndex((prev) => (prev % 3) + 1);
+      if (index === 2) setClothesTopIndex((prev) => (prev % 3) + 1);
+      if (index === 3) setClothesDownIndex((prev) => (prev % 3) + 1);
+      if (index === 4) setShoesIndex((prev) => (prev % 3) + 1);
     }
     const handlePhotoClick = () => {
         
@@ -36,9 +38,16 @@ const PlayPage = () => {
                                 className="absolute inset-0 max-h-full max-w-full object-contain z-20 pointer-events-none"
                             />
                             )}
-                        {clothesIndex > 0 && (
+                        {clothesTopIndex > 0 && (
                             <img
-                                src={`/img/cloth/${clothesIndex}.png`}
+                                src={`/img/clothTop/${clothesTopIndex}.png`}
+                                alt="одежда"
+                                className="absolute inset-0 max-h-full max-w-full object-contain z-50 pointer-events-none"
+                            />
+                        )}
+                        {clothesDownIndex > 0 && (
+                            <img
+                                src={`/img/clothDown/${clothesDownIndex}.png`}
                                 alt="одежда"
                                 className="absolute inset-0 max-h-full max-w-full object-contain z-40 pointer-events-none"
                             />
@@ -84,16 +93,11 @@ const PlayPage = () => {
                 <div className="col-span-1 row-span-2 flex">
                 <Container 
                     currentShow={currentShow} 
-                    onSelect={(index) => {
-                        if (currentShow === 1) {
-                        setFaceIndex((prev) => (prev === index + 1 ? 0 : index + 1));
-                        }
-                        if (currentShow === 2) {
-                        setClothesIndex((prev) => (prev === index + 1 ? 0 : index + 1));
-                        }
-                        if (currentShow === 3) {
-                        setShoesIndex((prev) => (prev === index + 1 ? 0 : index + 1));
-                        }
+                    onSelect={(type, index) => {
+                        if (type === 'face') setFaceIndex(prev => (prev === index ? 0 : index));
+                        if (type === 'top') setClothesTopIndex(prev => (prev === index ? 0 : index));
+                        if (type === 'down') setClothesDownIndex(prev => (prev === index ? 0 : index));
+                        if (type === 'shoes') setShoesIndex(prev => (prev === index ? 0 : index));
                     }}
                 />
                 </div>
